@@ -76,10 +76,10 @@ const [HMD,setHMD]  = useState(null);
 				<BarChart
 					// style={graphStyle}
 					data={{
-						labels: ["January", "February", "March", "April", "May", "June"],
+						labels: ["TMP", "HMD", "D3", "D4", "D5", "D6"],
 						datasets: [
 						  {
-							data: [TMP, HMD, 28, 80, 99, 43]
+							data: [TMP, HMD, 28, 30, 19, 43]
 						  }
 						]
 					  }}
