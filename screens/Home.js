@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Layout from '../components/global/Layout';
+// const HomeStack = createStackNavigator();
 // import Text from '../components/utils/UbuntuFont';
 // import Colors from '../constants/colors';
-export default function ({ navigation }) {
+function HomeScreen({ navigation }) {
 	return (
 		<Layout navigation={navigation} name="Home">
 			<View style={styles.container}>
@@ -24,7 +25,7 @@ export default function ({ navigation }) {
                 resizeMode="cover"
               />
           </LinearGradient>
-		  <View style = {styles.cardtop}>
+		  <View style = {styles.cardCenter}>
 				<Text bold>This is Profile tab</Text>
 				<Text>This tab not using Top navigation</Text>
 				<TouchableOpacity
@@ -38,7 +39,7 @@ export default function ({ navigation }) {
 					</Text>
 				</TouchableOpacity>
 				</View>
-				<View style = {styles.cardtop}>
+				<View style = {styles.cardbottom}>
 				<Text bold>This is Profile tab</Text>
 				<Text>This tab not using Top navigation</Text>
 				<TouchableOpacity
@@ -60,6 +61,7 @@ export default function ({ navigation }) {
 // Styling Module
 
 const styles = StyleSheet.create({
+	height: Platform.OS === 'android' ? 70 : 90,
 	container: {
 		flex: 1,
 		flexDirection: 'column',
@@ -85,8 +87,19 @@ const styles = StyleSheet.create({
 		height:"25%", backgroundColor:"gray", width:"99%", alignItems: 'center',
  	 	justifyContent: 'center', marginTop:10, padding:5, borderRadius: 15,
   	},
+	cardCenter:{
+		height:"50%", backgroundColor:"gray", width:"99%", alignItems: 'center',
+	  	justifyContent: 'center', marginTop:5,padding:5, borderRadius: 5, borderColor: '#ccc',
+	},
+	cardbottom:{
+		height:"20%", backgroundColor:"gray", width:"99%", alignItems: 'center',
+		justifyContent: 'center', marginTop:5,padding:5, borderRadius: 5, 
+		borderBottomLeftRadius: 15, borderBottomRightRadius: 15, borderColor: '#ccc',
+	},
 	cardChart:{
 		height:"40%", backgroundColor:"gray", width:"99%", alignItems: 'center',
  	 	justifyContent: 'center', marginTop:10, padding:5, borderRadius: 15,
   	},
 });
+
+export default HomeScreen;

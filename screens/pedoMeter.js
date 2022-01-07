@@ -6,7 +6,7 @@ import AnimatedProgressWheel from 'react-native-progress-wheel';
 import { ProgressChart } from 'react-native-chart-kit';
 
 
-export default function ({ navigation }) {
+function pedoMeterScreen({ navigation }) {
   const [isPedometerAvailable, setIsPedometerAvailable] = useState('checking');
   const [pastStepCount, setPastStepCount] = useState(0);
   const [currentStepCount, setCurrentStepCount] = useState(0);
@@ -135,6 +135,7 @@ export default function ({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  height: Platform.OS === 'android' ? 70 : 90,
   container: {
     flex: 1,
     // marginTop: 15,
@@ -166,3 +167,5 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
 });
+
+export default pedoMeterScreen;

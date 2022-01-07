@@ -112,6 +112,7 @@ const [HMD,setHMD]  = useState(null);
 // Styling Module
 
 const styles = StyleSheet.create({
+	height: Platform.OS === 'android' ? 70 : 90,
 	container: {
 		flex: 1,
 		flexDirection: 'column',

@@ -7,22 +7,23 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 import Home from '../screens/Home';
-import About from '../screens/pedoMeter';
+import About from '../screens/About';
 import Chart from '../screens/Chart';
-// import pedoMeter from '../screens/pedoMeter';
+import HomeScreen from '../screens/Home';
+// import pedoMeterScreen from '../screens/pedoMeter';
 
 const MainStack = createStackNavigator();
 const Main = () => {
 	return (
 		<MainStack.Navigator
 			screenOptions={{
-				headerShown: true,
+				headerShown: false,
 			}}
 		>
 			<MainStack.Screen name="Home" component={Home} options={{ title: 'Welcome' }}/>
 			<MainStack.Screen name="Chart" component={Chart} />
       <MainStack.Screen name="About" component={About} />
-			<MainStack.Screen name="pedoMeter" component={pedoMeter} />
+			{/* <MainStack.Screen name="pedoMeter" component={pedoMeterScreen} /> */}
 		</MainStack.Navigator>
 	);
 };
@@ -46,6 +47,9 @@ export default function App() {
            }else if(route.name=="Chart"){
              iconName="ios-aperture-outline"
            }
+          //  else if (route.name == "pedoMeter"){
+
+          //  }
            else if(route.name=="About"){
             iconName="ios-information-circle"
           }
@@ -54,8 +58,9 @@ export default function App() {
          }
          )}
         >
-          <Tabs.Screen name="Home" component={Home}/>
+          <Tabs.Screen name="Home" component={HomeScreen}/>
           <Tabs.Screen name="Chart" component={Chart} />
+          {/* <Tabs.Screen name="pedoMeter" component={pedoMeterScreen} /> */}
           <Tabs.Screen name="About" component={About} />
         </Tabs.Navigator>
       </NavigationContainer>

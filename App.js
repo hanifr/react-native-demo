@@ -48,7 +48,7 @@ async function loadResourcesAsync() {
 	// load all resources such as images, fonts, etc.
 	await Promise.all([
 		Asset.loadAsync([
-			require('./assets/icon.png'),
+			require('./assets/Nex-plexIcon2.png'),
 			require('./assets/Nex-plexIcon2.png'),
 		]),
 		Font.loadAsync({
