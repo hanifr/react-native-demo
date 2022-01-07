@@ -49,7 +49,7 @@ async function loadResourcesAsync() {
 	await Promise.all([
 		Asset.loadAsync([
 			require('./assets/icon.png'),
-			require('./assets/splash.png'),
+			require('./assets/Nex-plexIcon2.png'),
 		]),
 		Font.loadAsync({
 			Ubuntu_300Light,

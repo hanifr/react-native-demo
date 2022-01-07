@@ -14,10 +14,10 @@ export default function ({ navigation }) {
 	
 	const chartConfig = {
 		backgroundGradientFrom: "#1E2923",
-		backgroundGradientFromOpacity: 0,
+		backgroundGradientFromOpacity: 0.6,
 		backgroundGradientTo: "#08130D",
-		backgroundGradientToOpacity: 0.5,
-		color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+		backgroundGradientToOpacity: 0.4,
+		color: (opacity = 1) => `rgba(26, 255, 16, ${opacity})`,
 		strokeWidth: 2, // optional, default 3
 		barPercentage: 0.5,
 		useShadowColorFromDataset: false // optional
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',
-		backgroundColor: 'blue',
+		backgroundColor: 'white',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

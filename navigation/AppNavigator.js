@@ -1,27 +1,28 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// import Colors from '../constants/colors';
-// import TabBarIcon from '../components/utils/TabBarIcon';
-// import TabBarText from '../components/utils/TabBarText';
 
 import Home from '../screens/Home';
-import About from '../screens/About';
+import About from '../screens/pedoMeter';
 import Chart from '../screens/Chart';
+// import pedoMeter from '../screens/pedoMeter';
 
 const MainStack = createStackNavigator();
 const Main = () => {
 	return (
 		<MainStack.Navigator
 			screenOptions={{
-				headerShown: false,
+				headerShown: true,
 			}}
 		>
-			<MainStack.Screen name="MainTabs" component={MainTabs} />
+			<MainStack.Screen name="Home" component={Home} options={{ title: 'Welcome' }}/>
 			<MainStack.Screen name="Chart" component={Chart} />
+      <MainStack.Screen name="About" component={About} />
+			<MainStack.Screen name="pedoMeter" component={pedoMeter} />
 		</MainStack.Navigator>
 	);
 };
