@@ -28,6 +28,7 @@ var mqttTopic = 'TRX/data/#'
 
 const [TMP,setTMP]  = useState(null);
 const [HMD,setHMD]  = useState(null);
+const [Geyzer,setGeyzer]  = useState(null);
 	useEffect(() => {
 		try {
 		  client = mqtt.connect(mqttServer)
@@ -54,6 +55,11 @@ const [HMD,setHMD]  = useState(null);
 				setTMP(dhmd.txTMP)
 				console.log(dhmd)
 				}
+			if (topic === `TRX/data/bomba/geyzer`){
+				let gasData= JSON.parse(message.toString())
+				setGeyzer(gasData.D7)
+					console.log(gasData)
+					}
 			  }catch (error) {
 			  console.log('error parse')
 			}
@@ -76,10 +82,10 @@ const [HMD,setHMD]  = useState(null);
 				<BarChart
 					// style={graphStyle}
 					data={{
-						labels: ["TMP", "HMD", "D3", "D4", "D5", "D6"],
+						labels: ["TMP", "HMD", "GAS", "D4", "D5", "D6"],
 						datasets: [
 						  {
-							data: [TMP, HMD, 28, 30, 19, 43]
+							data: [TMP, HMD, Geyzer, 30, 19, 43]
 						  }
 						]
 					  }}
