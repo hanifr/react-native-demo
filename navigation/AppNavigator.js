@@ -48,12 +48,13 @@ export default function App() {
             //  iconName="ios-aperture-outline"
             iconName="ios-bar-chart-outline"
            }
-           else if (route.name == "pedoMeter"){
-            iconName="ios-walk-outline"
-           }
+          //  else if (route.name == "pedoMeter"){
+          //   iconName="ios-walk-outline"
+          //  }
            else if(route.name=="About"){
             // iconName="ios-information-circle"
-            iconName="ios-nutrition-outline"
+            // iconName="ios-nutrition-outline"
+            iconName="ios-cloudy-night-outline"
           }
           return <Ionicons name={iconName} size={size} color={color} />
           }
@@ -62,7 +63,7 @@ export default function App() {
         >
           <Tabs.Screen name="Home" component={HomeScreen}/>
           <Tabs.Screen name="Chart" component={Chart} />
-          <Tabs.Screen name="pedoMeter" component={pedoMeterScreen} />
+          {/* <Tabs.Screen name="pedoMeter" component={pedoMeterScreen} /> */}
           <Tabs.Screen name="About" component={About} />
         </Tabs.Navigator>
       </NavigationContainer>
