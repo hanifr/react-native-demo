@@ -7,10 +7,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 import Home from '../screens/Home';
-import About from '../screens/About';
+import About from '../screens/weather';
 import Chart from '../screens/Chart';
 import HomeScreen from '../screens/Home';
-// import pedoMeterScreen from '../screens/pedoMeter';
+import pedoMeterScreen from '../screens/pedoMeter';
 
 const MainStack = createStackNavigator();
 const Main = () => {
@@ -23,7 +23,7 @@ const Main = () => {
 			<MainStack.Screen name="Home" component={Home} options={{ title: 'Welcome' }}/>
 			<MainStack.Screen name="Chart" component={Chart} />
       <MainStack.Screen name="About" component={About} />
-			{/* <MainStack.Screen name="pedoMeter" component={pedoMeterScreen} /> */}
+			<MainStack.Screen name="pedoMeter" component={pedoMeterScreen} />
 		</MainStack.Navigator>
 	);
 };
@@ -45,13 +45,15 @@ export default function App() {
            if (route.name=='Home') { 
             iconName='ios-home' 
            }else if(route.name=="Chart"){
-             iconName="ios-aperture-outline"
+            //  iconName="ios-aperture-outline"
+            iconName="ios-bar-chart-outline"
            }
-          //  else if (route.name == "pedoMeter"){
-
-          //  }
+           else if (route.name == "pedoMeter"){
+            iconName="ios-walk-outline"
+           }
            else if(route.name=="About"){
-            iconName="ios-information-circle"
+            // iconName="ios-information-circle"
+            iconName="ios-nutrition-outline"
           }
           return <Ionicons name={iconName} size={size} color={color} />
           }
@@ -60,7 +62,7 @@ export default function App() {
         >
           <Tabs.Screen name="Home" component={HomeScreen}/>
           <Tabs.Screen name="Chart" component={Chart} />
-          {/* <Tabs.Screen name="pedoMeter" component={pedoMeterScreen} /> */}
+          <Tabs.Screen name="pedoMeter" component={pedoMeterScreen} />
           <Tabs.Screen name="About" component={About} />
         </Tabs.Navigator>
       </NavigationContainer>
