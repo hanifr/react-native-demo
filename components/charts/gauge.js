@@ -28,23 +28,24 @@ export default function Chart(props) {
         {
           // name: "Ammonia",
           type: "gauge",
-          detail: { formatter: "{value} ppm" },
+          detail: { formatter: "{value}" },
           data: [{ value: props.data, name:props.unit }],
           max: props.max,
           axisLabel: {
-            fontSize: 11,
+            fontSize: 14,
             distance: 8
           },
           detail: {
             formatter: "{value}",
-            fontSize: 16,
+            fontSize: 20,
             // backgroundColor: "rgba(227, 0, 0, 1)",
             offsetCenter: ["0", "78%"],
           },
-          title: {
-            fontSize: 11,
+          title: { // unit styling
+            fontSize: 16,
+            fontWeight:'bold',
             offsetCenter: ["0", "110%"],
-            color: "rgba(0, 0, 0, 1)",
+            color: "#db722c",
           },
           splitNumber: 4,
           pointer:{

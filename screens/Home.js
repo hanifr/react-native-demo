@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import { Platform, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,6 +20,9 @@ var mqttTopic1 = 'TRX/data/#'
 
 // Set logic for button, input state for connected and disconnected
 const [Geyzer,setGeyzer]  = useState(null);
+const [gasPer,setGasPer]  = useState(null);
+const [gasStat,setGasStat]  = useState(null);
+
 useEffect(() => {
 	try {
 	//   setReqWeatherData(`TRX/data/weather/request`)
@@ -39,8 +42,20 @@ useEffect(() => {
 		try {
 			if (topic === `TRX/data/bomba/geyzer`){
 				let gasData= JSON.parse(message.toString())
+				//Raw Data in PPT
 				setGeyzer(gasData.D7)
-					console.log(gasData)
+				// Data in Percent
+				setGasPer(Number((gasData.D7)/500*100).toFixed(2))
+				if (Number((gasData.D7)/500*100).toFixed(2) <= 10)  {
+					setGasStat("LOW")
+				}
+				else if (Number((gasData.D7)/500*100).toFixed(2) >= 25 && Number((gasData.D7)/500*100).toFixed(2) <= 50)  {
+					setGasStat("ALERT")
+				}
+				else if (Number((gasData.D7)/500*100).toFixed(2) >= 50)  {
+					setGasStat("CRITICAL")
+				}
+					console.log(gasStat)
 					}
 		  }catch (error) {
 		  console.log('error parse')
@@ -63,7 +78,7 @@ useEffect(() => {
 			
 			<LinearGradient
             // Button Linear Gradient
-            colors={['#db1d3f', '#4a3e32']}
+            colors={['#edc240', '#8a190f']}
             style={{width:'99%',height:100, backgroundColor:'#19A78B', justifyContent:'flex-end', paddingBottom:10, paddingLeft:15, borderRadius:10}}
             >
             <Text bold style={{color:'#faf3f2', fontSize:18, paddingBottom:5}}>HARTAMAS FIRE DEPARTMENT</Text>
@@ -82,14 +97,18 @@ useEffect(() => {
     			</View> */}
           </LinearGradient>
 		  		<View style = {styles.cardCenter}>
-                    <Chart data={Geyzer} sensor='Methane' max='500' unit='ppt' title='Methane'/>
+                    <Chart data={Geyzer} sensor='Methane' max='500' unit='PPT' title='Methane'/>
                     <View style={styles.gaugeText}>
                     <Text style={styles.cardText} bold >Gas Concentration: {Geyzer} ppt</Text></View>
 				</View>
 				<View style = {styles.cardbottom}>
 
 				<View style={styles.textContainer}>
-					<Text bold style={styles.bottomHeaderText}>Intensity level: {(Geyzer/500)*100} %</Text>
+					<Text bold style = {styles.infoText} >Information of Gas data</Text>
+					<View style = {styles.cardChart}>
+					<Text bold style={styles.bottomHeaderText}>Intensity level: {gasPer} %</Text>
+					<Text bold style={styles.bottomHeaderText}>Reading Status: {gasStat}</Text>
+					</View>
       				<Text style={styles.bottomText}>Please make sure to have personal protection equipment on hand. </Text>
 					<Text style={styles.bottomText}>Keep an eye on the gas concentration and avoid approaching the area if it is higher than 25%. </Text>
 				</View>
@@ -143,6 +162,13 @@ const styles = StyleSheet.create({
 		margin:-20, 
 		marginBottom:10
 	},
+	infoText: { 
+		right:70,
+		fontSize: 20,
+		textAlign: 'center',
+		color: "#0f5259", 
+		marginBottom:2
+	},
 	textContainer: { 
 		// flex: 1,
     	alignItems: 'center',
@@ -153,7 +179,7 @@ const styles = StyleSheet.create({
 		color: "#5c5b28", 
 		fontSize: 18,
 		textAlign: 'left',
-		margin:10, 
+		margin:5, 
 	},
 	bottomText: { 
 		color: "#755044", 
@@ -179,8 +205,8 @@ const styles = StyleSheet.create({
 		borderBottomLeftRadius: 15, borderBottomRightRadius: 15, borderColor: '#ccc',
 	},
 	cardChart:{
-		height:"40%", backgroundColor:"gray", width:"99%", alignItems: 'center',
- 	 	justifyContent: 'center', marginTop:10, padding:5, borderRadius: 15,
+		height:"35%", backgroundColor:"#e1eef0", width:"99%", alignItems: 'center',
+ 	 	justifyContent: 'center', marginTop:2, padding:5, borderRadius: 15,
   	},
 });
 
