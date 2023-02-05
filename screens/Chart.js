@@ -29,6 +29,7 @@ var mqttTopic = 'TRX/data/#'
 const [TMP,setTMP]  = useState(null);
 const [HMD,setHMD]  = useState(null);
 const [Geyzer,setGeyzer]  = useState(null);
+const [TotalExportkWh,setTotalExportkWh]  = useState(null);
 	useEffect(() => {
 		try {
 		  client = mqtt.connect(mqttServer)
@@ -58,8 +59,13 @@ const [Geyzer,setGeyzer]  = useState(null);
 			if (topic === `TRX/data/bomba/geyzer`){
 				let gasData= JSON.parse(message.toString())
 				setGeyzer(gasData.D7)
-					console.log(gasData)
-					}
+				console.log(gasData)
+				}
+			if (topic === `TRX/data/sem`){
+				let EnergyData= JSON.parse(message.toString())
+				setTotalExportkWh(EnergyData.EAE)
+				console.log(EnergyData)
+				}
 			  }catch (error) {
 			  console.log('error parse')
 			}
@@ -82,10 +88,10 @@ const [Geyzer,setGeyzer]  = useState(null);
 				<BarChart
 					// style={graphStyle}
 					data={{
-						labels: ["TMP", "HMD", "GAS", "D4", "D5", "D6"],
+						labels: ["TMP", "HMD", "GAS", "kWh", "D5", "D6"],
 						datasets: [
 						  {
-							data: [TMP, HMD, Geyzer, 30, 19, 43]
+							data: [TMP, HMD, Geyzer, TotalExportkWh, 19, 43]
 						  }
 						]
 					  }}

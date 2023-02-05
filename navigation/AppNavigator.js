@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 import Home from '../screens/Home';
-import About from '../screens/weather';
+import About from '../screens/EnergyMeter';
 import Chart from '../screens/Chart';
 import HomeScreen from '../screens/Home';
 import pedoMeterScreen from '../screens/pedoMeter';
